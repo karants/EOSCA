@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import CesiumMap from './CesiumMap';
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
           Learn React
         </a>
       </header>
-    </div>
+      <main>
+      <CesiumMap />
+        </main>    </div>
   );
 }
 
