@@ -1,0 +1,15 @@
+.SatelliteSearchBox {
+    background: #ffffff;
+    border-radius: 0.5em;
+    padding: 1.5em;
+    left: 50%;
+    max-width: 90%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 30em;
+    text-align: left;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
