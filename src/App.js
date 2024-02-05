@@ -9,7 +9,7 @@ const App = () => {
 
   const [satellites, setSatellites] = useState([]);
   const [filteredSatellites, setFilteredSatellites] = useState([]);
-  const [showSearchBox, setShowSearchBox] = useState(true);
+  const [showSearchBox, setShowSearchBox] = useState(false);
 
   useEffect(() => {
     const fetchSatellites = async () => {
