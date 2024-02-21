@@ -1,6 +1,7 @@
 .SatelliteSearchBox {
     background: #ffffff;
-    border-radius: 0.5em;
+    border: 1px solid black;
+    border-radius: 2rem;
     padding: 1.5em;
     left: 50%;
     max-width: 90%;
@@ -12,4 +13,12 @@
     max-height: 90vh;
     display: flex;
     flex-direction: column;
+}
+
+.btn-left {
+    float: left;
+}
+
+.btn-right {
+    float: right;
 }

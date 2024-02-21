@@ -3,52 +3,54 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import APIs from './configs/API_URL';
 import CesiumMap from './components/CesiumMap';
 import SatelliteSearch from './components/SatelliteSearch';
+import RiskAssessmentTable from './components/RiskAssessmentTable';
 import { useState, useEffect } from 'react';
 
 const App = () => {
 
   const [satellites, setSatellites] = useState([]);
-  const [filteredSatellites, setFilteredSatellites] = useState([]);
-  const [showSearchBox, setShowSearchBox] = useState(false);
+  const [showSearchBox, setShowSearchBox] = useState(true);
+  const [CZML, setCZML] = useState([]);
+  const [riskData, setRiskData] = useState([{
+    time: '2020-02-02',
+    object: 'dd-sss',
+    probability: '80%',
+    severity: 'www'
+  }]);
 
   useEffect(() => {
     const fetchSatellites = async () => {
       try {
-        /*
-        const response = await fetch('API_URL');// Need to replace this with Satellite API
+        const response = await fetch(APIs.satellite_list, { method: "GET" });// Need to replace this with Satellite API
         const data = await response.json();
         setSatellites(data);
-        setFilteredSatellites(data);
-        */
       } catch (error) {
-        console.error('Error fetching satellite data:', error);
+        alert('Error fetching satellite data:', error);
       }
     };
 
     fetchSatellites();
   }, []);
 
-  const getSearchResult = (searchInput) => {
-    const filtered = satellites.filter((satellite) =>
-      satellite.name.toLowerCase().includes(searchInput)
-    );
-    setFilteredSatellites(filtered);
-
-
-
+  const getSearchResult = (czml_result) => {
+    setCZML(czml_result);
     setShowSearchBox(false);
   }
 
   return (
     <div className="App">
-      <CesiumMap />
-      {showSearchBox ? <SatelliteSearch getSearchResult={getSearchResult} /> : null}
+      <div className='container'>
+        <div className="row">
+          <div className="col-md-8 col-12">
+            <CesiumMap CZML={CZML} />
+          </div>
+          <div className="col-md-4 col-12">
+            <RiskAssessmentTable riskData={riskData} />
+          </div>
+        </div>
+      </div>
 
-      <ul>
-        {filteredSatellites.map((satellite) => (
-          <li key={satellite.id}>{satellite.name}</li>
-        ))}
-      </ul>
+      {showSearchBox ? <SatelliteSearch satellites={satellites} getSearchResult={getSearchResult} /> : null}
     </div>
   );
 }
