@@ -1,56 +1,29 @@
 import './css/App.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.css'
-import APIs from './configs/API_URL';
-import CesiumMap from './components/CesiumMap';
-import SatelliteSearch from './components/SatelliteSearch';
-import RiskAssessmentTable from './components/RiskAssessmentTable';
-import { useState, useEffect } from 'react';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import { BrowserRouter as Router, Route, Navigate, Routes } from 'react-router-dom'
+
+import Navbar from './components/Navbar';
+import Main from './page/Main';
+import AboutSection from './page/AboutSection';
+import AcceptableUsagePolicy from './page/AcceptableUse';
+import ConjunctionAssessment from './page/ConjunctionAssessment';
+
 
 const App = () => {
 
-  const [satellites, setSatellites] = useState([]);
-  const [showSearchBox, setShowSearchBox] = useState(true);
-  const [CZML, setCZML] = useState([]);
-  const [riskData, setRiskData] = useState([{
-    time: '2020-02-02',
-    object: 'dd-sss',
-    probability: '80%',
-    severity: 'www'
-  }]);
-
-  useEffect(() => {
-    const fetchSatellites = async () => {
-      try {
-        const response = await fetch(APIs.satellite_list, { method: "GET" });// Need to replace this with Satellite API
-        const data = await response.json();
-        setSatellites(data);
-      } catch (error) {
-        alert('Error fetching satellite data:', error);
-      }
-    };
-
-    fetchSatellites();
-  }, []);
-
-  const getSearchResult = (czml_result) => {
-    setCZML(czml_result);
-    setShowSearchBox(false);
-  }
-
   return (
     <div className="App">
-      <div className='container'>
-        <div className="row">
-          <div className="col-md-8 col-12">
-            <CesiumMap CZML={CZML} />
-          </div>
-          <div className="col-md-4 col-12">
-            <RiskAssessmentTable riskData={riskData} />
-          </div>
-        </div>
-      </div>
-
-      {showSearchBox ? <SatelliteSearch satellites={satellites} getSearchResult={getSearchResult} /> : null}
+      <Navbar />
+      <br />
+      <Router>
+        <Routes>
+          <Route path='/' exact element={<Main />} />
+          <Route path='/About' exact element={<AboutSection />} />
+          <Route path='/Policy' exact element={<AcceptableUsagePolicy />} />
+          <Route path='/Assessment' exact element={<ConjunctionAssessment />} />
+          <Route path='*' element={<Navigate to='/' replace={true} />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

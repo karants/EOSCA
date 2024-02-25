@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import APIs from '../configs/API_URL';
-import '../css/SatelliteSearch.css'
+import '../css/SatelliteSearch.css';
 
 const SatelliteSearch = (props) => {
 
