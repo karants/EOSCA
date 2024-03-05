@@ -70,7 +70,7 @@ const SatelliteSearch = (props) => {
         return alert('Fail to fetch satellite information, please try again!');
       }
 
-      props.getSearchResult(await response.json());
+      props.getSearchResult(await response.json(), object_id);
 
     } catch (e) {
       return alert('Fail to fetch satellite information, please try again!');
