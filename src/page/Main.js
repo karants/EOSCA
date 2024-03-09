@@ -11,7 +11,7 @@ const Main = () => {
     const [showSearchBox, setShowSearchBox] = useState(true);
     const [showRiskAssessment, setShowRiskAssessment] = useState(false);
     const [CZML, setCZML] = useState([]);
-    const [CurrentSatelliteId, setCurrentSatelliteId] = useState('');
+    const [currentSatelliteId, setCurrentSatelliteId] = useState('');
 
     const [riskData, setRiskData] = useState([{
         time: '2020-02-02',
@@ -45,7 +45,18 @@ const Main = () => {
         setShowRiskAssessment(false);
     }
 
-    const renderRiskAssessment = () => {
+    const renderRiskAssessment = async () => {
+        if (currentSatelliteId === '') {
+            return alert('Please search a satellite first!');
+        }
+
+        /*
+        let form_data = new FormData();
+        form_data.append('satid', currentSatelliteId);
+        let response = await fetch(APIs.riskassessment, { method: 'post', body: form_data });
+        console.log(response);
+        */
+
         setShowSearchBox(false);
         setShowRiskAssessment(true);
     }
@@ -59,7 +70,7 @@ const Main = () => {
                 <div className="col-md-4 col-12">
                     <div className='toggle-container'>
                         <button type='button' className={'btn ' + (showSearchBox ? 'btn-secondary' : 'btn-outline-secondary')} onClick={renderSearchBox}>Search Satellite</button>
-                        <button type='button' className={'btn ' + (showRiskAssessment ? 'btn-secondary' : 'btn-outline-secondary')} onClick={renderRiskAssessment}>Risk Assessment</button>
+                        <button type='button' className={'btn ' + (showRiskAssessment ? 'btn-secondary' : 'btn-outline-secondary')} onClick={renderRiskAssessment} >Risk Assessment</button>
                     </div>
                     {showSearchBox ? <SatelliteSearch satellites={satellites} getSearchResult={getSearchResult} /> : null}
                     {showRiskAssessment ? <RiskAssessmentTable riskData={riskData} /> : null}

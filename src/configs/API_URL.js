@@ -4,6 +4,7 @@ const APIs = {
     healthcheck: base_url + 'healthcheck/',
     satellite_list: base_url + 'satellite/list',
     satellite_ephemeris: base_url + 'satellite/ephemeris',
+    riskassessment: base_url + 'satellite/riskassessment',
     refresh_lastrefreshtime: base_url + 'refresh/lastrefreshtime',
     refresh_status: base_url + 'refresh/status'
 };
