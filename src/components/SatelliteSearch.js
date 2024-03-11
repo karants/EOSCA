@@ -71,6 +71,7 @@ const SatelliteSearch = (props) => {
       }
 
       props.getSearchResult(await response.json());
+      props.onSatelliteSelection(searchInput);
 
     } catch (e) {
       return alert('Fail to fetch satellite information, please try again!');
@@ -79,7 +80,7 @@ const SatelliteSearch = (props) => {
 
   return (
     <div className='SatelliteSearchBox'>
-      <h1 lass="display-6">Satellite Search</h1>
+      <h1 className="display-6">Satellite Search</h1>
       <div className="input-group mb-3">
         <input type="text" placeholder="Search for a satellite..." className='form-control' ref={searchRef} onKeyUp={handleSearchBoxKeyDown} list='potential-satellites' />
         <datalist id='potential-satellites'>
