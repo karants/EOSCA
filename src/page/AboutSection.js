@@ -2,11 +2,6 @@ import React from 'react';
 import Architecture from '../images/Architecture.png'
 import { Container } from 'react-bootstrap';
 
-/* 
-<Jumbotron fluid className="bg-dark text-light">
-</Jumbotron>
-*/
-
 const Header = () => {
   return (
 

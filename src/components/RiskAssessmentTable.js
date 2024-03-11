@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const RiskAssessmentTable = ({ riskData }) => {
   return (
     <div className="container">
-      <h2>Risk Assessment Table</h2>
       <table className="table table-striped">
         <thead className="thead-dark">
           <tr>
