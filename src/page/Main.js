@@ -9,13 +9,8 @@ const Main = () => {
     const [satellites, setSatellites] = useState([]);
     const [showSearchBox, setShowSearchBox] = useState(true);
     const [CZML, setCZML] = useState([]);
-    const [riskData, setRiskData] = useState([{
-        time: '2020-02-02',
-        object: 'dd-sss',
-        probability: '80%',
-        severity: 'www'
-    }]);
     const [selectedSatellite, setSelectedSatellite] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const fetchSatellites = async () => {
@@ -31,6 +26,10 @@ const Main = () => {
         fetchSatellites();
     }, []);
 
+    const updateCZML = (new_czml) => {
+        setCZML([...CZML, ...new_czml]);
+    }
+
     const getSearchResult = (czml_result) => {
         setCZML(czml_result);
         setShowSearchBox(false);
@@ -43,35 +42,38 @@ const Main = () => {
                     <CesiumMap CZML={CZML} />
                 </div>
                 <div className='col-md-4 col-12'>
-                    <div>
-                        <div className='d-flex justify-content-between mb-3'>
-                            <Button
-                                onClick={() => {
-                                    setShowSearchBox(true);
-                                    setSelectedSatellite(null);
-                                }}
-                                variant={showSearchBox ? 'primary' : 'outline-primary'}
-                            >
-                                Search Satellite
-                            </Button>
-                            <Button
-                                onClick={() => setShowSearchBox(false)}
-                                variant={!showSearchBox ? 'primary' : 'outline-primary'}
-                                disabled={!selectedSatellite}
-                            >
-                                Risk Assessment Table
-                            </Button>
+                    <fieldset disabled={isLoading}>
+                        <div>
+                            <div className='d-flex justify-content-between mb-3'>
+                                <Button
+                                    onClick={() => {
+                                        setShowSearchBox(true);
+                                        setSelectedSatellite(null);
+                                    }}
+                                    variant={showSearchBox ? 'primary' : 'outline-primary'}
+                                >
+                                    Search Satellite
+                                </Button>
+                                <Button
+                                    onClick={() => setShowSearchBox(false)}
+                                    variant={!showSearchBox ? 'primary' : 'outline-primary'}
+                                    disabled={!selectedSatellite}
+                                >
+                                    {isLoading ? <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : null}
+                                    Risk Assessment Table
+                                </Button>
+                            </div>
+                            {showSearchBox ? (
+                                <SatelliteSearch
+                                    satellites={satellites}
+                                    getSearchResult={getSearchResult}
+                                    setSelectedSatellite={setSelectedSatellite}
+                                />
+                            ) : (
+                                <RiskAssessmentTable selectedSatellite={selectedSatellite} updateCZML={updateCZML} setIsLoading={setIsLoading} />
+                            )}
                         </div>
-                        {showSearchBox ? (
-                            <SatelliteSearch
-                                satellites={satellites}
-                                getSearchResult={getSearchResult}
-                                setSelectedSatellite={setSelectedSatellite}
-                            />
-                        ) : (
-                            <RiskAssessmentTable riskData={riskData} />
-                        )}
-                    </div>
+                    </fieldset>
                 </div>
             </div>
         </div>

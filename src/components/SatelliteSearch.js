@@ -71,6 +71,7 @@ const SatelliteSearch = (props) => {
       }
 
       props.getSearchResult(await response.json());
+      props.setSelectedSatellite(object_id);
 
     } catch (e) {
       return alert('Fail to fetch satellite information, please try again!');

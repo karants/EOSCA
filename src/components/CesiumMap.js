@@ -18,8 +18,15 @@ const CesiumMap = (props) => {
 
     Cesium.Ion.defaultAccessToken = cesium_access_token;
     Cesium.CzmlDataSource.load(props.CZML).then(function (data_source) {
-      viewer = new Cesium.Viewer('cesiumContainer');
+      viewer = new Cesium.Viewer('cesiumContainer', {
+        geocoder: false,
+        homeButton: false,
+        sceneModePicker: false,
+        navigationHelpButton: false,
+        baseLayerPicker: false
+      });
       viewer.dataSources.add(data_source);
+
       viewer.clock.shouldAnimate = true;
       viewer.clock.multiplier = 200;
     });
