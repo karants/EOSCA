@@ -36,7 +36,7 @@ const Main = () => {
     }
 
     return (
-        <div className='container' style={{ width: '100%', padding: 0, margin: 0 }}>
+        <div className='container-fluid'>
             <div className="row">
                 <div className='col-md-8 col-12'>
                     <CesiumMap CZML={CZML} />

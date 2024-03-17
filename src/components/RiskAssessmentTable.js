@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import APIs from '../configs/API_URL';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/RiskAssessmentTable.css'
 
 const RiskAssessmentTable = ({ selectedSatellite, updateCZML, setIsLoading }) => {
   const [riskData, setRiskData] = useState([]);
@@ -20,13 +20,7 @@ const RiskAssessmentTable = ({ selectedSatellite, updateCZML, setIsLoading }) =>
         let risk_assessment_tabledata = data.risk_assessment_tabledata;
         let updated_czml = data.updated_czml;
         updateCZML(updated_czml);
-
-        let temp_risk_assessment = [];
-        for (let i = 0; i < (risk_assessment_tabledata.length < 10 ? risk_assessment_tabledata.length : 10); i++) {
-          temp_risk_assessment.push(risk_assessment_tabledata[i]);
-        }
-
-        setRiskData(temp_risk_assessment);
+        setRiskData(risk_assessment_tabledata);
 
 
       } catch (e) {
@@ -40,7 +34,7 @@ const RiskAssessmentTable = ({ selectedSatellite, updateCZML, setIsLoading }) =>
 
 
   return (
-    <div className="container">
+    <div className="container risk-assessment-table">
       <table className="table table-striped">
         <thead className="thead-dark">
           <tr>
@@ -54,9 +48,9 @@ const RiskAssessmentTable = ({ selectedSatellite, updateCZML, setIsLoading }) =>
         <tbody>
           {riskData.map((risk, index) => (
             <tr key={index}>
-              <td>{risk['Closest Approach Distance (km)']}</td>
+              <td>{Math.round(risk['Closest Approach Distance (km)'] * 100000) / 100000}</td>
               <td>{risk['Object']}</td>
-              <td>{risk['Probability of Collision']}</td>
+              <td>{Math.round(risk['Probability of Collision'] * 100000) / 100000}</td>
               <td>{risk['Risk Severity']}</td>
               <td>{risk['Time of Closest Approach']}</td>
             </tr>
