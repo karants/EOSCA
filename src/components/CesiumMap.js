@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import * as Cesium from 'cesium';
 import "cesium/Build/CesiumUnminified/Widgets/widgets.css";
+import '../css/CesiumMap.css';
 
 const cesium_access_token = process.env.REACT_APP_CESIUM_ACCESS_TOKEN;
 let viewer;
