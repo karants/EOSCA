@@ -1,16 +1,11 @@
 .cesium-viewer-animationContainer {
-    top: 0;
-}
-
-.cesium-viewer-bottom {
-    top: 30px;
-    height: 30px;
+    bottom: 80px;
 }
 
 .cesium-viewer-timelineContainer {
-    top: 2.5px;
+    bottom: 80px;
 }
 
 .cesium-viewer-fullscreenContainer {
-    top: 0;
+    bottom: 80px;
 }
