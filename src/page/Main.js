@@ -11,6 +11,7 @@ const Main = () => {
     const [CZML, setCZML] = useState([]);
     const [selectedSatellite, setSelectedSatellite] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [isRefreshing, setIsRefreshing] = useState(false);
 
     useEffect(() => {
         const fetchSatellites = async () => {
@@ -26,10 +27,6 @@ const Main = () => {
         fetchSatellites();
     }, []);
 
-    const updateCZML = (new_czml) => {
-        setCZML([...CZML, ...new_czml]);
-    }
-
     const getSearchResult = (czml_result) => {
         setCZML(czml_result);
     }
@@ -41,7 +38,7 @@ const Main = () => {
                     <CesiumMap CZML={CZML} />
                 </div>
                 <div className='col-md-4 col-12'>
-                    <fieldset disabled={isLoading}>
+                    <fieldset disabled={isLoading || isRefreshing}>
                         <div>
                             <div className='d-flex justify-content-between mb-3'>
                                 <Button
@@ -69,7 +66,7 @@ const Main = () => {
                                     setSelectedSatellite={setSelectedSatellite}
                                 />
                             ) : (
-                                <RiskAssessmentTable selectedSatellite={selectedSatellite} updateCZML={updateCZML} setIsLoading={setIsLoading} />
+                                <RiskAssessmentTable selectedSatellite={selectedSatellite} CZML={CZML} setCZML={setCZML} setIsLoading={setIsLoading} setIsRefreshing={setIsRefreshing} />
                             )}
                         </div>
                     </fieldset>
