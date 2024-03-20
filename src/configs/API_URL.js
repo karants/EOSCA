@@ -6,7 +6,8 @@ const APIs = {
     satellite_ephemeris: base_url + 'satellite/ephemeris',
     riskassessment: base_url + 'satellite/riskassessment',
     refresh_lastrefreshtime: base_url + 'refresh/lastrefreshtime',
-    refresh_status: base_url + 'refresh/status'
+    refresh_status: base_url + 'refresh/status',
+    reassess_debris: base_url + 'reassess/debris'
 };
 
 export default APIs;

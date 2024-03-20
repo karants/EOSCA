@@ -32,7 +32,6 @@ const Main = () => {
 
     const getSearchResult = (czml_result) => {
         setCZML(czml_result);
-        setShowSearchBox(false);
     }
 
     return (
@@ -59,7 +58,7 @@ const Main = () => {
                                     variant={!showSearchBox ? 'primary' : 'outline-primary'}
                                     disabled={!selectedSatellite}
                                 >
-                                    {isLoading ? <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : null}
+                                    {isLoading ? <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : null}
                                     Risk Assessment Table
                                 </Button>
                             </div>

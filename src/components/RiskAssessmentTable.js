@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import APIs from '../configs/API_URL';
 import '../css/RiskAssessmentTable.css'
+import { Button } from 'react-bootstrap';
 
 const RiskAssessmentTable = ({ selectedSatellite, updateCZML, setIsLoading }) => {
   const [riskData, setRiskData] = useState([]);
-
+  const [disableRefresh, setDisableRefresh] = useState(false);
+  const [refreshLoading, setRefreshLoading] = useState(false);
 
   useEffect(() => {
     async function getRiskAssessmentData() {
@@ -13,9 +15,11 @@ const RiskAssessmentTable = ({ selectedSatellite, updateCZML, setIsLoading }) =>
         form_data.append('satid', selectedSatellite);
 
         setIsLoading(true);
+        setDisableRefresh(true);
         let response = await fetch(APIs.riskassessment, { method: 'post', body: form_data });
         let data = await response.json();
         setIsLoading(false);
+        setDisableRefresh(false);
 
         let risk_assessment_tabledata = data.risk_assessment_tabledata;
         let updated_czml = data.updated_czml;
@@ -32,9 +36,24 @@ const RiskAssessmentTable = ({ selectedSatellite, updateCZML, setIsLoading }) =>
     getRiskAssessmentData();
   }, []);
 
+  const handleRefreshDebris = () => {
+    setRefreshLoading(true);
+    console.log('hello world');
+    setRefreshLoading(false);
+  }
 
   return (
     <div className="container risk-assessment-table">
+      <Button
+        className='refresh-debris-btn'
+        onClick={handleRefreshDebris}
+        disabled={disableRefresh}
+        variant='outline-info'
+      >
+        {refreshLoading ? <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : null}
+        Refresh Debris
+      </Button>
+
       <table className="table table-striped">
         <thead className="thead-dark">
           <tr>

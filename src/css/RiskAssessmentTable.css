@@ -2,3 +2,7 @@
     height: 740px;
     overflow: auto;
 }
+
+.refresh-debris-btn {
+    width: 100%;
+}
