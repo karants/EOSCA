@@ -12,9 +12,9 @@ import ConjunctionAssessment from './page/ConjunctionAssessment';
 const App = () => {
 
   return (
-    <div className="App">
+    <div className="App" style = {{ backgroundColor : "#5F6B7C"}}>
       <Navbar />
-      <br />
+      
       <Router>
         <Routes>
           <Route path='/' exact element={<Main />} />

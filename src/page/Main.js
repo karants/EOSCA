@@ -32,16 +32,16 @@ const Main = () => {
     }
 
     return (
-        <div className='container-fluid'>
+        <div className='container-fluid'style = {{ backgroundColor : "#404854"}} >
             <div className="row">
-                <div className='col-md-8 col-12'>
+                <div className='col-md-8 col-12' style = {{padding : 0}}>
                     <CesiumMap CZML={CZML} />
                 </div>
                 <div className='col-md-4 col-12'>
                     <fieldset disabled={isLoading || isRefreshing}>
                         <div>
                             <div className='d-flex justify-content-between mb-3'>
-                                <Button
+                                <Button style = {{ marginTop : 20}}
                                     onClick={() => {
                                         setShowSearchBox(true);
                                         setSelectedSatellite(null);
@@ -50,7 +50,7 @@ const Main = () => {
                                 >
                                     Search Satellite
                                 </Button>
-                                <Button
+                                <Button style = {{ marginTop : 20}}
                                     onClick={() => setShowSearchBox(false)}
                                     variant={!showSearchBox ? 'primary' : 'outline-primary'}
                                     disabled={!selectedSatellite}
