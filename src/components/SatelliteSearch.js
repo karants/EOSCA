@@ -80,7 +80,6 @@ const SatelliteSearch = (props) => {
 
   return (
     <div className='SatelliteSearchBox'>
-      <h1 className="display-6">Satellite Search</h1>
       <div className="input-group mb-3">
         <input type="text" placeholder="Search for a satellite..." className='form-control' ref={searchRef} onKeyUp={handleSearchBoxKeyDown} list='potential-satellites' />
         <datalist id='potential-satellites'>
