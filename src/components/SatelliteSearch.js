@@ -43,16 +43,17 @@ const SatelliteSearch = (props) => {
     let searchInput = searchRef.current.value;
     let satellites = props.satellites
 
-
     if (searchInput === '') {
       return alert("Search text can't be blank!");
     }
 
+    searchInput = searchInput.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#x27;').replaceAll("/", '&#x2F;');
     let object_id = '';
 
     for (let i = 0; i < satellites.length; i++) {
       if (satellites[i].ObjectName.toLowerCase() === searchInput.toLowerCase()) {
         object_id = satellites[i].ObjectID;
+        searchInput = satellites[i].ObjectName;
         break;
       }
     }
@@ -72,6 +73,7 @@ const SatelliteSearch = (props) => {
 
       props.getSearchResult(await response.json());
       props.setSelectedSatellite(object_id);
+      props.setSatelliteTitle(searchInput);
 
     } catch (e) {
       return alert('Fail to fetch satellite information, please try again!');

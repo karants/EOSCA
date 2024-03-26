@@ -12,6 +12,7 @@ const Main = () => {
     const [selectedSatellite, setSelectedSatellite] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [isRefreshing, setIsRefreshing] = useState(false);
+    const [satelliteTitle, setSatelliteTitle] = useState(null);
 
     useEffect(() => {
         const fetchSatellites = async () => {
@@ -32,16 +33,16 @@ const Main = () => {
     }
 
     return (
-        <div className='container-fluid'style = {{ backgroundColor : "#404854"}} >
+        <div className='container-fluid' style={{ backgroundColor: "#404854" }} >
             <div className="row">
-                <div className='col-md-8 col-12' style = {{padding : 0}}>
+                <div className='col-md-8 col-12' style={{ padding: 0 }}>
                     <CesiumMap CZML={CZML} />
                 </div>
                 <div className='col-md-4 col-12'>
                     <fieldset disabled={isLoading || isRefreshing}>
                         <div>
                             <div className='d-flex justify-content-between mb-3'>
-                                <Button style = {{ marginTop : 20}}
+                                <Button style={{ marginTop: 20, width: '50%' }}
                                     onClick={() => {
                                         setShowSearchBox(true);
                                         setSelectedSatellite(null);
@@ -50,7 +51,7 @@ const Main = () => {
                                 >
                                     Search Satellite
                                 </Button>
-                                <Button style = {{ marginTop : 20}}
+                                <Button style={{ marginTop: 20, width: '50%' }}
                                     onClick={() => setShowSearchBox(false)}
                                     variant={!showSearchBox ? 'primary' : 'outline-primary'}
                                     disabled={!selectedSatellite}
@@ -64,6 +65,7 @@ const Main = () => {
                                     satellites={satellites}
                                     getSearchResult={getSearchResult}
                                     setSelectedSatellite={setSelectedSatellite}
+                                    setSatelliteTitle={setSatelliteTitle}
                                 />
                             ) : (
                                 <RiskAssessmentTable selectedSatellite={selectedSatellite} CZML={CZML} setCZML={setCZML} setIsLoading={setIsLoading} setIsRefreshing={setIsRefreshing} />
@@ -72,6 +74,7 @@ const Main = () => {
                     </fieldset>
                 </div>
             </div>
+            {satelliteTitle ? <div style={{ position: 'absolute', top: '57px', left: '0px', backgroundColor: '#4a6ba1', color: 'white', width: '120px', padding: '10px' }}>{satelliteTitle}</div> : null}
         </div>
     );
 }
