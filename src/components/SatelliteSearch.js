@@ -47,7 +47,7 @@ const SatelliteSearch = (props) => {
       return alert("Search text can't be blank!");
     }
 
-    searchInput = searchInput.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#x27;').replaceAll("/", '&#x2F;');
+    searchInput = searchInput.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#x27;');
     let object_id = '';
 
     for (let i = 0; i < satellites.length; i++) {
