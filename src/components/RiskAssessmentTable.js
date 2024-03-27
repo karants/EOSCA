@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress, createTheme, ThemeProvider } from '@mui/material';
 import APIs from '../configs/API_URL';
-import '../css/RiskAssessmentTable.css'
-import { Button } from 'react-bootstrap';
+import '../css/RiskAssessmentTable.css';
 
 const RiskAssessmentTable = ({ selectedSatellite, CZML, setCZML, setIsLoading, setIsRefreshing }) => {
   const [riskData, setRiskData] = useState([]);
@@ -26,7 +26,6 @@ const RiskAssessmentTable = ({ selectedSatellite, CZML, setCZML, setIsLoading, s
         setCZML([...CZML, ...updated_czml]);
         setRiskData(risk_assessment_tabledata);
 
-
       } catch (e) {
         console.log(e);
       }
@@ -34,7 +33,6 @@ const RiskAssessmentTable = ({ selectedSatellite, CZML, setCZML, setIsLoading, s
       setIsLoading(false);
       setDisableRefresh(false);
     }
-
 
     getRiskAssessmentData();
   }, []);
@@ -44,7 +42,6 @@ const RiskAssessmentTable = ({ selectedSatellite, CZML, setCZML, setIsLoading, s
     setIsRefreshing(true);
 
     try {
-
       let SatelliteID = selectedSatellite;
       let DebrisIDs = [];
       riskData.forEach((item) => {
@@ -61,46 +58,56 @@ const RiskAssessmentTable = ({ selectedSatellite, CZML, setCZML, setIsLoading, s
       console.log(e);
     }
 
-
     setRefreshLoading(false);
     setIsRefreshing(false);
   }
 
-  return (
-    <div className="container risk-assessment-table">
-      <Button
-        className='refresh-debris-btn'
-        onClick={handleRefreshDebris}
-        disabled={disableRefresh}
-        variant='outline-info'
-      >
-        {refreshLoading ? <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : null}
-        Refresh Debris
-      </Button>
+  // Define a dark theme
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
 
-      <table className="table table-striped">
-        <thead className="thead-dark">
-          <tr>
-            <th>Closest Approach Distance (km)</th>
-            <th>Object</th>
-            <th>Probability of Collision</th>
-            <th>Risk Severity</th>
-            <th>Time of Closest Approach</th>
-          </tr>
-        </thead>
-        <tbody>
-          {riskData.map((risk, index) => (
-            <tr key={index}>
-              <td>{Math.round(risk['Closest Approach Distance (km)'] * 100000) / 100000}</td>
-              <td>{risk['Object']}</td>
-              <td>{Math.round(risk['Probability of Collision'] * 100000) / 100000}</td>
-              <td>{risk['Risk Severity']}</td>
-              <td>{risk['Time of Closest Approach']}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+  return (
+    <ThemeProvider theme={darkTheme}>
+      <div className="container risk-assessment-table">
+        <Button
+          className='refresh-debris-btn'
+          onClick={handleRefreshDebris}
+          disabled={disableRefresh}
+          variant='outline-info'
+        >
+          {refreshLoading ? <CircularProgress size={20} /> : null}
+          Refresh Debris
+        </Button>
+
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Closest Approach Distance (km)</TableCell>
+                <TableCell>Object ID</TableCell>
+                <TableCell>Probability of Collision</TableCell>
+                <TableCell>Risk Severity</TableCell>
+                <TableCell>Time of Closest Approach (UTC)</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {riskData.map((risk, index) => (
+                <TableRow key={index}>
+                  <TableCell>{Math.round(risk['Closest Approach Distance (km)'] * 100000) / 100000}</TableCell>
+                  <TableCell>{risk['Object']}</TableCell>
+                  <TableCell>{Math.round(risk['Probability of Collision'] * 100000) / 100000}</TableCell>
+                  <TableCell>{risk['Risk Severity']}</TableCell>
+                  <TableCell>{risk['Time of Closest Approach']}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    </ThemeProvider>
   );
 };
 

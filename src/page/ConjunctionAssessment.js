@@ -24,10 +24,13 @@ const ConjunctionAssessment = () => {
         <Card.Body>
           <Card.Title>EOSCA's Solution Methodology</Card.Title>
           <Card.Text style = {{textAlign: 'left'}}>
-            EOSCA (Earth Orbit Spacecraft Collision Avoidance) focuses on performing the first two phases of conjunction assessment: screening and risk assessment. Leveraging a web application, EOSCA utilizes standardized astrodynamics algorithms, notably the SGP4 model, to interpret Two-Line Element set (TLE) data. This data provides near real-time positional and velocity information for both satellites and debris objects.
+            EOSCA (Earth Orbit Spacecraft Collision Avoidance) focuses on performing the first two phases of conjunction assessment: screening and risk assessment. Leveraging a web application, EOSCA utilizes standardized astrodynamics algorithms, notably the SGP4 model, to interpret Two-Line Element set (TLE) data obtained from space-track.org. This data, backed by the 18th Space Defense Squadron of the US government, provides near real-time positional and velocity information for both satellites and debris objects. The 18th Space Control Squadron (SPCS) is responsible for providing space situational awareness and tracking objects in orbit to prevent potential collisions. 
           </Card.Text>
           <Card.Text style = {{textAlign: 'left'}}>
-            The application predicts the future positions and trajectories of these objects, refining state vectors with observational data to account for uncertainties. It computes the Euclidean distance between objects to determine collision probability. A risk assessment algorithm categorizes potential encounters into various risk levels, ranging from low to critical, based on collision probability.
+          The application predicts the future positions and trajectories of these objects, refining state vectors with observational data to account for uncertainties. It computes the Euclidean distance between objects to determine collision probability. A risk assessment algorithm categorizes potential encounters into various risk levels, ranging from low to critical, based on collision probability.
+          </Card.Text>
+          <Card.Text style = {{textAlign: 'left'}}>
+          The Euclidean distance is calculated over a 24-hour period and incorporates the predicted positions of objects during this time frame. The risk assessment algorithm categorizes potential encounters into various risk levels, ranging from low to critical, based on collision probability.
           </Card.Text>
         </Card.Body>
       </Card>

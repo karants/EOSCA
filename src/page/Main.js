@@ -33,7 +33,7 @@ const Main = () => {
     }
 
     return (
-        <div className='container-fluid' style={{ backgroundColor: "#404854" }} >
+        <div className='container-fluid' style = {{ backgroundColor : "white"}}>
             <div className="row">
                 <div className='col-md-8 col-12' style={{ padding: 0 }}>
                     <CesiumMap CZML={CZML} />
@@ -41,20 +41,22 @@ const Main = () => {
                 <div className='col-md-4 col-12'>
                     <fieldset disabled={isLoading || isRefreshing}>
                         <div>
-                            <div className='d-flex justify-content-between mb-3'>
-                                <Button style={{ marginTop: 20, width: '50%' }}
+                            <div className='d-flex mb-3'>
+                                <Button
                                     onClick={() => {
                                         setShowSearchBox(true);
                                         setSelectedSatellite(null);
                                     }}
                                     variant={showSearchBox ? 'primary' : 'outline-primary'}
+                                    className="mt-2"
                                 >
                                     Search Satellite
                                 </Button>
-                                <Button style={{ marginTop: 20, width: '50%' }}
+                                <Button
                                     onClick={() => setShowSearchBox(false)}
                                     variant={!showSearchBox ? 'primary' : 'outline-primary'}
                                     disabled={!selectedSatellite}
+                                    className="mt-2"
                                 >
                                     {isLoading ? <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : null}
                                     Risk Assessment Table
