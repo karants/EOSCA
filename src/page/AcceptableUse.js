@@ -1,29 +1,68 @@
 import React from 'react';
+import { Typography, Card, CardContent } from '@mui/material';
 import { Container, Accordion } from 'react-bootstrap';
 
 const AcceptableUsagePolicy = () => {
   return (
     <Container>
-      <h1 className="mt-5 mb-4">Acceptable Usage Policy</h1>
+      <Typography variant="h1" component="h1" gutterBottom>Acceptable Usage Policy</Typography>
 
-      <h2>Purpose</h2>
-      <p>EOSCA is designed to promote space situational awareness and mitigate collision risks in near-Earth orbit. The acceptable usage policy was created to ensure the safe, responsible, and ethical use of the EOSCA web application by all users.</p>
+      <Card sx={{ marginBottom: '1rem' }}>
+        <CardContent>
+          <Typography variant="h2" gutterBottom>Purpose</Typography>
+          <Typography variant="body1">
+            EOSCA is designed to promote space situational awareness and mitigate collision risks in near-Earth orbit. The acceptable usage policy was created to ensure the safe, responsible, and ethical use of the EOSCA web application by all users.
+          </Typography>
+        </CardContent>
+      </Card>
 
-      <h2>User Responsibilities</h2>
-      <p>Users must use EOSCA for lawful purposes only and must not engage in any activities that violate the principles of transparency, integrity, and ethical usage outlined in the EOSCA ethics and sustainability considerations.</p>
-      <p>Users are prohibited from using EOSCA for malicious purposes, such as targeting specific satellites.</p>
+      <Card sx={{ marginBottom: '1rem' }}>
+        <CardContent>
+          <Typography variant="h2" gutterBottom>User Responsibilities</Typography>
+          <Typography variant="body1">
+            Users must use EOSCA for lawful purposes only and must not engage in any activities that violate the principles of transparency, integrity, and ethical usage outlined in the EOSCA ethics and sustainability considerations.
+          </Typography>
+          <Typography variant="body1">
+            Users are prohibited from using EOSCA for malicious purposes, such as targeting specific satellites.
+          </Typography>
+        </CardContent>
+      </Card>
 
-      <h2>Transparency and Ethical Usage</h2>
-      <p>EOSCA is committed to transparency in design and usage. Users can expect clear documentation of data sources, algorithms used, and methodologies for risk assessment to ensure trust and verify the information provided by the application.</p>
-      <p>Users are encouraged to use EOSCA in an ethical manner, respecting the principles of transparency, and integrity in space operations.</p>
+      <Card sx={{ marginBottom: '1rem' }}>
+        <CardContent>
+          <Typography variant="h2" gutterBottom>Transparency and Ethical Usage</Typography>
+          <Typography variant="body1">
+            EOSCA is committed to transparency in design and usage. Users can expect clear documentation of data sources, algorithms used, and methodologies for risk assessment to ensure trust and verify the information provided by the application.
+          </Typography>
+          <Typography variant="body1">
+            Users are encouraged to use EOSCA in an ethical manner, respecting the principles of transparency, and integrity in space operations.
+          </Typography>
+        </CardContent>
+      </Card>
 
-      <h2>Security</h2>
-      <p>Security controls are implemented to ensure the confidentiality, integrity, and availability of the data and the runtime environment of EOSCA.</p>
-      <p>Users are prohibited from attempting to bypass any security controls or engage in any activities that compromise the security of the EOSCA system.</p>
+      <Card sx={{ marginBottom: '1rem' }}>
+        <CardContent>
+          <Typography variant="h2" gutterBottom>Security</Typography>
+          <Typography variant="body1">
+            Security controls are implemented to ensure the confidentiality, integrity, and availability of the data and the runtime environment of EOSCA.
+          </Typography>
+          <Typography variant="body1">
+            Users are prohibited from attempting to bypass any security controls or engage in any activities that compromise the security of the EOSCA system.
+          </Typography>
+        </CardContent>
+      </Card>
 
-      <h2>Accessibility Design</h2>
-      <p>EOSCA prioritizes a user-friendly interface with an easy to navigate system and simplistic presentation of data. This provides flexibility with regards to access for users with different abilities.</p>
-      <p>Users are encouraged to provide feedback on the user interface and experience to facilitate continual improvement and ensure human-centric design principles are upheld.</p>
+      <Card sx={{ marginBottom: '1rem' }}>
+        <CardContent>
+          <Typography variant="h2" gutterBottom>Accessibility Design</Typography>
+          <Typography variant="body1">
+            EOSCA prioritizes a user-friendly interface with an easy to navigate system and simplistic presentation of data. This provides flexibility with regards to access for users with different abilities.
+          </Typography>
+          <Typography variant="body1">
+            Users are encouraged to provide feedback on the user interface and experience to facilitate continual improvement and ensure human-centric design principles are upheld.
+          </Typography>
+        </CardContent>
+      </Card>
 
       <Accordion className="mb-5">
         <Accordion.Item eventKey="0">

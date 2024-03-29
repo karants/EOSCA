@@ -77,9 +77,10 @@ const RiskAssessmentTable = ({ selectedSatellite, CZML, setCZML, setIsLoading, s
           onClick={handleRefreshDebris}
           disabled={disableRefresh}
           variant='outline-info'
+          style={{ marginTop: '2px', backgroundColor: '#007bff', borderColor: '#007bff', color: 'white', fontWeight: 'bold' }}
         >
           {refreshLoading ? <CircularProgress size={20} /> : null}
-          Refresh Debris
+          Enhance Precision
         </Button>
 
         <TableContainer component={Paper}>
