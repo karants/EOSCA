@@ -12,7 +12,7 @@ import ConjunctionAssessment from './page/ConjunctionAssessment';
 const App = () => {
 
   return (
-    <div className="App" style = {{ backgroundColor : "#5F6B7C"}}>
+    <div className="App">
       <Navbar />
       
       <Router>
