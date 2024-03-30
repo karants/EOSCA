@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress, createTheme, ThemeProvider } from '@mui/material';
+import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress, createTheme, ThemeProvider, Tooltip } from '@mui/material';
 import APIs from '../configs/API_URL';
 import '../css/RiskAssessmentTable.css';
 
@@ -72,6 +72,10 @@ const RiskAssessmentTable = ({ selectedSatellite, CZML, setCZML, setIsLoading, s
   return (
     <ThemeProvider theme={darkTheme}>
       <div className="container risk-assessment-table">
+      <Tooltip title={<span> The enhanced position button further performs a conjunction assessment for the top 50 debris objects of the selected satellite. This function performs the same calculation, and re-populates the graphic and risk assessment table with the new results. The position of each debris object is calculated in one-second intervals during a 24-hour time period.</span>
+  }
+  placement="top"
+>
         <Button
           className='refresh-debris-btn'
           onClick={handleRefreshDebris}
@@ -82,6 +86,7 @@ const RiskAssessmentTable = ({ selectedSatellite, CZML, setCZML, setIsLoading, s
           {refreshLoading ? <CircularProgress size={20} /> : null}
           Enhance Precision
         </Button>
+      </Tooltip>
 
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
