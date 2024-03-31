@@ -89,14 +89,14 @@ const RiskAssessmentTable = ({ selectedSatellite, CZML, setCZML, setIsLoading, s
       </Tooltip>
 
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 595 }} aria-label="simple table">
+          <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell sx={{ fontWeight: 'bold' }}>Closest Approach Distance (km)</TableCell>
-                <TableCell sx={{ fontWeight: 'bold' }}>Object ID</TableCell>
-                <TableCell sx={{ fontWeight: 'bold' }}>Probability of Collision</TableCell>
-                <TableCell sx={{ fontWeight: 'bold' }}>Risk Severity</TableCell>
-                <TableCell sx={{ fontWeight: 'bold' }}>Time of Closest Approach (UTC)</TableCell>
+                <TableCell>Closest Approach Distance (km)</TableCell>
+                <TableCell>Object ID</TableCell>
+                <TableCell>Probability of Collision</TableCell>
+                <TableCell>Risk Severity</TableCell>
+                <TableCell>Time of Closest Approach (UTC)</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
