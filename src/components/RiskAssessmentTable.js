@@ -72,7 +72,7 @@ const RiskAssessmentTable = ({ selectedSatellite, CZML, setCZML, setIsLoading, s
   return (
     <ThemeProvider theme={darkTheme}>
       <div className="container risk-assessment-table">
-      <Tooltip title={<span> The enhanced position button further performs a conjunction assessment for the top 50 debris objects of the selected satellite. This function performs the same calculation, and re-populates the graphic and risk assessment table with the new results. The position of each debris object is calculated in one-second intervals during a 24-hour time period.</span>
+      <Tooltip title={<span> The enhanced precision button further performs a conjunction assessment for the top 50 debris objects of the selected satellite. This function performs the same calculation, and re-populates the graphic and risk assessment table with the new results. The position of each debris object is calculated in one-second intervals during a 24-hour time period.</span>
   }
   placement="top"
 >

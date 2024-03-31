@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Typography, Grid, Card, CardContent, CardHeader, List, ListItem, ListItemText, CardMedia } from '@mui/material';
 import Architecture from '../images/Architecture.png';
+import Project_Image from '../images/Project_Image.png';
 
 const AboutSection = () => {
   return (
@@ -19,6 +20,12 @@ const AboutSection = () => {
               <Typography variant="body1">
                 The main goal of EOSCA is to maintain a clean and safe space environment, by providing real-time tracking, assessment and mitigation of collision risks between satellites and space debris. Utilizing advanced algorithms and predictive modeling, EOSCA is designed to ensure the safety and longevity of critical space infrastructure, in hopes to increase the concern for space situational awareness.
               </Typography>
+              <CardMedia
+                component="img"
+                image={Project_Image}
+                alt="Project Image"
+                sx={{ mt: 2 }}
+              />
             </CardContent>
           </Card>
         </Grid>

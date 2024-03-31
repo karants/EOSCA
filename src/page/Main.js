@@ -35,10 +35,10 @@ const Main = () => {
     return (
         <div className='container-fluid' style = {{ backgroundColor : "white"}}>
             <div className="row">
-                <div className='col-md-8 col-12' style={{ padding: 0 }}>
+                <div className='col-md-6 col-12' style={{ padding: 0 }}>
                     <CesiumMap CZML={CZML} />
                 </div>
-                <div className='col-md-4 col-12'>
+                <div className='col-md-6 col-12'>
                     <fieldset disabled={isLoading || isRefreshing}>
                         <div>
                             <div className='d-flex mb-3'>
