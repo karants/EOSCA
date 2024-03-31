@@ -4,6 +4,7 @@ import SatelliteSearch from '../components/SatelliteSearch';
 import RiskAssessmentTable from '../components/RiskAssessmentTable';
 import { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
+import HttpClient from '../client/HttpClient';
 
 const Main = () => {
     const [satellites, setSatellites] = useState([]);
@@ -13,12 +14,12 @@ const Main = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isRefreshing, setIsRefreshing] = useState(false);
     const [satelliteTitle, setSatelliteTitle] = useState(null);
+    const httpClient = new HttpClient();
 
     useEffect(() => {
         const fetchSatellites = async () => {
             try {
-                const response = await fetch(APIs.satellite_list, { method: "GET" });
-                const data = await response.json();
+                const data = await httpClient.get(APIs.satellite_list);
                 setSatellites(data);
             } catch (error) {
                 alert('Error fetching satellite data:', error);

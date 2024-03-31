@@ -1,11 +1,13 @@
 import React, { useRef, useState } from 'react';
 import APIs from '../configs/API_URL';
 import '../css/SatelliteSearch.css';
+import HttpClient from '../client/HttpClient';
 
 const SatelliteSearch = (props) => {
 
   const [filteredSatellites, setFilteredSatellites] = useState([]);
   const searchRef = useRef();
+  const httpClient = new HttpClient();
 
   const handleSearchBoxKeyDown = (e) => {
     let searchInput = searchRef.current.value;
@@ -63,20 +65,16 @@ const SatelliteSearch = (props) => {
     }
 
     try {
-      let form_data = new FormData();
+      const form_data = new FormData();
       form_data.append('satid', object_id);
 
-      let response = await fetch(APIs.satellite_ephemeris, { method: 'post', body: form_data });
-      if (response.status !== 200) {
-        return alert('Fail to fetch satellite information, please try again!');
-      }
-
-      props.getSearchResult(await response.json());
+      const responseData = await httpClient.post(APIs.satellite_ephemeris, form_data);
+      
+      props.getSearchResult(responseData);
       props.setSelectedSatellite(object_id);
       props.setSatelliteTitle(searchInput);
-
-    } catch (e) {
-      return alert('Fail to fetch satellite information, please try again!');
+    } catch (error) {
+      alert('Failed to fetch satellite information, please try again!');
     }
   };
 
